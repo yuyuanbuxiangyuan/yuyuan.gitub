@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<!--
+  步骤一：引入echarts.js文件
+-->
+ <script src="lib/echarts.min.js"></script>
+<!--
+  步骤一：引入echarts.js文件
+  步骤二：准备一个呈现图表的盒子
+  步骤三：初始化echarts实例对象
+  步骤四：准备配置项
+  步骤五：将配置项设置给echarts实例对象
+-->
+</head>
+<body>
+<!--步骤二：准备一个呈现图表的盒子-->
+  <div style="width: 1200px;height:700px"></div>
+ <script>
+  //步骤三：初始化echarts实例对象
+  //参数，dom，决定图表最终呈现位置
+  var mCharts4= echarts.init(document.querySelector('div'))
+  //步骤四：准备配置项
+  var option={
+  title: {
+    text: 'The Sale Comparison of Different Types of Fictions',
+    top:'50'
+  },
+  tooltip: {},   
+  legend: {
+    data: ['2016', '2017','2018','2019','2020']
+  },
+  radar: {
+    // shape: 'circle',
+    indicator: [
+      { name: 'Classic', max:150000},
+      { name: 'Mystery', max: 150000},
+      { name: 'Romance', max: 150000},
+      { name: 'Sci-Fi&Fantasy', max: 150000 },
+      { name: 'Young Adult', max: 150000}
+    ],
+    axisName: {
+    color: '#fff',
+    backgroundColor: '#999999',
+    borderRadius: 3,
+    padding: [3, 5]
+   }
+  },
+  series: [
+    {
+      name: 'Budget vs spending',
+      type: 'radar',
+      emphasis: {
+        lineStyle: {
+        width: 4
+        }
+      },
+      data: [
+        {
+          value: [15580, 78970, 24236, 16770, 35358],
+          name: '2016'
+        },
+        {
+          lineStyle: {
+            type: 'dashed'
+          },
+          value: [49225,82262,131390,19730,42685],
+          name: '2017',
+            label: {
+                      show: true, 
+                       position: 'top',
+                          textStyle: {
+                                      color: 'black',
+                                      fontSize: 12
+                                    }
+                                  },
+        },
+        {
+         areaStyle: {
+         color: 'rgba(255, 228, 52, 0.6)'
+          },
+          value: [16126, 48640, 79022, 12109, 20853],
+          name: '2018'
+        },
+       {
+          lineStyle: {
+            type: 'dashed'
+          },
+          value: [10017,49985, 71099, 11355, 16065],
+          name: '2019'
+        },
+        {
+          value: [26154,73428, 18474, 17686, 21353],
+          name: '2020'
+        },
+      ]
+    }
+  ]
+}
+ // 步骤五：将配置项设置给echarts实例对象
+ mCharts4.setOption(option)
+ </script>
+
+</body>
+</html>

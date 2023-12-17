@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<!--
+  步骤一：引入echarts.js文件
+-->
+ <script src="lib/echarts.min.js"></script>
+<!--
+  步骤一：引入echarts.js文件
+  步骤二：准备一个呈现图表的盒子
+  步骤三：初始化echarts实例对象
+  步骤四：准备配置项
+  步骤五：将配置项设置给echarts实例对象
+-->
+</head>
+<body>
+<!--步骤二：准备一个呈现图表的盒子-->
+  <div style="width: 1200px;height:700px"></div>
+ <script>
+  //步骤三：初始化echarts实例对象
+  //参数，dom，决定图表最终呈现位置
+  var mCharts1= echarts.init(document.querySelector('div'))
+  var xDataArr=[
+    'Classics','Mystery','Romance','Sci-Fi&Fantasy','Young Adult'
+  ]
+  var yDataArr1=[749225,882235,231390,519730,842685]
+  var yDataArr2=[800, 1170, 250, 400, 550]
+  //步骤四：准备配置项
+  var option={
+    tooltip:{
+      trigger:'axis',
+      axisPointer: {
+      type: 'cross',
+      crossStyle: {
+        color: '#999'
+      }
+    }
+  },
+   toolbox: {
+    feature: {
+      dataView: { show: true, readOnly: false },
+      magicType: { show: true, type: ['line', 'bar'] },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
+  },
+  legend: {
+    data: ['Sales', 'Number of Book']
+  },
+        xAxis:{
+          type:'category',
+          data:xDataArr,
+          axisPointer: {
+          type: 'shadow'
+      }
+        },
+        yAxis:[
+          {
+          type:'value',
+          name: 'Sales',
+          min: 0,
+          max: 1000000,
+          interval: 200000
+          },
+         {
+          type:'value',
+          name: 'Number of Book',
+          min: 0,
+          max: 1400,
+          interval: 200
+          },
+      ],
+        series:[
+             {
+            name:'Number of Book',
+            type:'line',
+             label: {
+              show: true, 
+             position: 'top',
+             textStyle: {
+             color: 'blue',
+             fontSize: 12
+             }
+           },
+     data:yDataArr1,
+     symbol: 'triangle',
+     symbolSize: 20,
+     lineStyle: {
+     color:'green',
+     width: 4,
+     type: 'dashed'
+      },
+      itemStyle: {
+        borderWidth: 3,
+        borderColor: 'red',
+        color: 'blue'
+          }
+        },
+          {
+            name:'Sales',
+            type:'bar',
+              label: {
+                      show: true, 
+                       position: 'top',
+                          textStyle: {
+                                      color: '#d21027',
+                                      fontSize: 12
+                                    }
+                                  },
+            yAxisIndex: 1,
+            color:'#d21027',
+            data:yDataArr2
+          }
+        
+        ]
+
+  }
+ // 步骤五：将配置项设置给echarts实例对象
+ mCharts1.setOption(option)
+ </script>
+
+</body>
+</html>
